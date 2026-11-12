@@ -1,4 +1,7 @@
 import crypto from 'node:crypto';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
@@ -26,7 +29,7 @@ export function createApp() {
     res.on('finish', () => logger.info({ reqId: req.id, method: req.method, path: req.path, status: res.statusCode, ms: Date.now() - t0 }, 'request'));
     next();
   });
-  app.use(helmet());
+  app.use(helmet({ contentSecurityPolicy: false, crossOriginEmbedderPolicy: false }));
   app.use(cors({ origin: env.clientOrigin, credentials: true }));
   app.use(express.json({ limit: '1mb' }));
   app.use(cookieParser());
@@ -54,6 +57,12 @@ export function createApp() {
   api.use(coreRouter);
   app.use('/api/v1', api);
   app.use('/api', (_req, res) => res.status(404).json({ error: { code: 'NOT_FOUND', message: 'Route not found', details: null } }));
+  // Single-service deploy: serve the built client when it exists.
+  const clientDist = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../client/dist');
+  if (fs.existsSync(path.join(clientDist, 'index.html'))) {
+    app.use(express.static(clientDist, { maxAge: '1h', index: false }));
+    app.get('*', (_req, res) => res.sendFile(path.join(clientDist, 'index.html')));
+  }
   app.use(errorHandler);
   return app;
 }
