@@ -1,0 +1,43 @@
+{
+  "name": "palprocure-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "seed": "node scripts/seed.js",
+    "test": "node --test --test-concurrency=1 \"tests/*.test.js\"",
+    "eval:forecast": "node scripts/evalForecast.js",
+    "eval:agent": "node scripts/evalAgent.js",
+    "export": "node scripts/export.js",
+    "fixtures:record": "node scripts/recordFixtures.js"
+  },
+  "dependencies": {
+    "bcryptjs": "2.4.3",
+    "cookie-parser": "1.4.7",
+    "cors": "2.8.5",
+    "dotenv": "16.4.5",
+    "express": "4.22.3",
+    "express-mongo-sanitize": "2.2.0",
+    "express-rate-limit": "7.4.1",
+    "helmet": "8.0.0",
+    "jsonwebtoken": "9.0.2",
+    "mongodb-memory-server": "10.1.2",
+    "mongoose": "8.24.7",
+    "multer": "1.4.5-lts.1",
+    "node-cron": "4.6.0",
+    "nodemailer": "10.2.1",
+    "papaparse": "5.4.1",
+    "pino": "9.5.0",
+    "rss-parser": "3.13.0",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "supertest": "7.0.0"
+  }
+}

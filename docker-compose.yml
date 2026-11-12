@@ -1,0 +1,37 @@
+services:
+  mongo:
+    image: mongo:7.0
+    command: ["--replSet", "rs0", "--bind_ip_all"]
+    ports: ["27017:27017"]
+    healthcheck:
+      # Initialise the single-node replica set (needed for transactions) and report healthy once primary.
+      test: ["CMD", "mongosh", "--quiet", "--eval", "try { rs.status().ok } catch (e) { rs.initiate({_id:'rs0',members:[{_id:0,host:'mongo:27017'}]}).ok }"]
+      interval: 5s
+      timeout: 10s
+      retries: 20
+    volumes: [mongo-data:/data/db]
+
+  server:
+    build: ./server
+    env_file:
+      - path: ./server/.env
+        required: false
+    environment:
+      MONGODB_URI: mongodb://mongo:27017/?replicaSet=rs0
+      CLIENT_ORIGIN: http://localhost:8080
+      FIXTURE_MODE: ${FIXTURE_MODE:-true}
+      AUTO_SEED: "true"
+    ports: ["4000:4000"]
+    depends_on:
+      mongo: { condition: service_healthy }
+
+  client:
+    build:
+      context: .
+      dockerfile: deploy/client.Dockerfile
+    ports: ["8080:80"]
+    depends_on:
+      server: { condition: service_healthy }
+
+volumes:
+  mongo-data:

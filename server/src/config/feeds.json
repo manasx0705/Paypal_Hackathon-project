@@ -1,0 +1,13 @@
+[
+  { "name": "Economic Times", "url": "https://economictimes.indiatimes.com/rssfeedsdefault.cms", "topics": ["business", "price"] },
+  { "name": "ET Agriculture", "url": "https://economictimes.indiatimes.com/news/economy/agriculture/rssfeeds/1202099874.cms", "topics": ["price"] },
+  { "name": "Mint", "url": "https://www.livemint.com/rss/news", "topics": ["business", "price"] },
+  { "name": "Hindustan Times Lifestyle", "url": "https://www.hindustantimes.com/feeds/rss/lifestyle/rssfeed.xml", "topics": ["lifestyle"] },
+  { "name": "Inc42", "url": "https://inc42.com/feed/", "topics": ["business"] },
+  { "name": "YourStory", "url": "https://yourstory.com/feed", "topics": ["business"] },
+  { "name": "The Hindu Food", "url": "https://www.thehindu.com/life-and-style/food/feeder/default.rss", "topics": ["food"] },
+  { "name": "The Hindu Sport", "url": "https://www.thehindu.com/sport/feeder/default.rss", "topics": ["fitness"] },
+  { "name": "Indian Express Fitness", "url": "https://indianexpress.com/section/lifestyle/fitness/feed/", "topics": ["fitness"] },
+  { "name": "Indian Express Food", "url": "https://indianexpress.com/section/lifestyle/food-wine/feed/", "topics": ["food"] },
+  { "name": "Times of India Life & Style", "url": "https://timesofindia.indiatimes.com/rssfeeds/2886704.cms", "topics": ["lifestyle"] }
+]

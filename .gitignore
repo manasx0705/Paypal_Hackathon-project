@@ -1,0 +1,20 @@
+node_modules/
+dist/
+coverage/
+.env
+.env.*
+!.env.example
+*.log
+export/
+server/fixtures/recorded/
+.DS_Store
+.vscode/
+playwright-report/
+test-results/
+# local tooling / scratch
+.idea/
+*.tmp
+*.png.tmp
+screenshots/
+server.log
+npm-debug.log*

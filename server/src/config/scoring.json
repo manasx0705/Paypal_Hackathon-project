@@ -1,0 +1,23 @@
+{
+  "trend": {
+    "weights": { "people": 0.45, "search": 0.35, "sources": 0.2 },
+    "caps": { "people": 6, "search": 3, "sources": 4 },
+    "sponsoredMultiplier": 0.8,
+    "spikeWindowDays": 2,
+    "emergingGrowth": 1.3,
+    "fadingGrowth": 0.9,
+    "windowDays": 30,
+    "fuzzyThreshold": 90,
+    "anchorKeyword": "chai",
+    "searchGeo": "IN",
+    "searchTimeframe": "today 3-m"
+  },
+  "market": {
+    "mergeWindowDays": 14,
+    "verifyThresholdPct": 8,
+    "signalTtlDays": 14,
+    "notifySeverity": 4
+  },
+  "trialQty": { "fraction": 0.1, "max": 20 },
+  "crossover": { "minUnits": 5, "fractionOfTrial": 0.25, "afterDays": 30 }
+}

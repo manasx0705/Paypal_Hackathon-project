@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+html,
+body,
+#root {
+  min-height: 100%;
+}
+body {
+  @apply bg-ink-950 text-fog-100 font-sans antialiased;
+}
+h1,
+h2,
+h3,
+h4 {
+  @apply font-display;
+}
+/* framer-motion useScroll needs a positioned scroll container */
+html {
+  position: relative;
+}
+/* grid tracks default to min-content; let children shrink so wide tables scroll inside their card at 360px */
+.overflow-x-auto {
+  /* contain absolutely-positioned descendants (e.g. sr-only text in table cells) so they can't widen the page */
+  position: relative;
+}
+.grid > * {
+  min-width: 0;
+}
+*:focus-visible {
+  outline: 2px solid #ffb84d;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+::selection {
+  background: rgba(255, 159, 28, 0.35);
+}
+
+@layer components {
+  .glass {
+    background: linear-gradient(140deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    @apply border border-white/10;
+  }
+  .glass-strong {
+    background: rgba(16, 19, 26, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  .card {
+    @apply glass rounded-2xl p-4 sm:p-5;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold transition
+      disabled:opacity-50 disabled:cursor-not-allowed select-none;
+  }
+  .btn-primary {
+    @apply btn text-ink-950 bg-gradient-to-r from-saffron-400 to-saffron-500 hover:from-saffron-300 hover:to-saffron-400 shadow-glow;
+  }
+  .btn-teal {
+    @apply btn text-ink-950 bg-teal-400 hover:bg-teal-300;
+  }
+  .btn-ghost {
+    @apply btn text-fog-100 bg-white/5 hover:bg-white/10 border border-white/10;
+  }
+  .btn-danger {
+    @apply btn text-white bg-rose-500/80 hover:bg-rose-500;
+  }
+  .btn-sm {
+    @apply px-2.5 py-1.5 text-xs rounded-lg;
+  }
+  .input {
+    @apply w-full rounded-xl bg-ink-900/80 border border-white/10 px-3 py-2 text-sm text-fog-100 placeholder:text-fog-500
+      focus:border-saffron-400/70 focus:outline-none focus:ring-2 focus:ring-saffron-400/30;
+  }
+  .label {
+    @apply block text-xs font-medium text-fog-300 mb-1;
+  }
+  .table {
+    @apply w-full text-sm;
+  }
+  .table th {
+    @apply text-left text-[11px] uppercase tracking-wider text-fog-400 font-semibold px-3 py-2 border-b border-white/10 whitespace-nowrap;
+  }
+  .table td {
+    @apply px-3 py-2.5 border-b border-white/5 align-middle;
+  }
+  .table tbody tr {
+    @apply hover:bg-white/[0.03] transition-colors;
+  }
+  .kicker {
+    @apply text-[11px] uppercase tracking-[0.2em] text-saffron-400 font-semibold;
+  }
+}
+
+.noise::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  z-index: 1;
+}
+.grid-lines {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.text-gradient {
+  background: linear-gradient(90deg, #ffd27a, #ff9f1c 40%, #2ee6d6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
