@@ -11,7 +11,7 @@
     "start": "node src/index.js",
     "dev": "node --watch src/index.js",
     "seed": "node scripts/seed.js",
-    "test": "node --test --test-concurrency=1 \"tests/*.test.js\"",
+    "test": "node --test --test-concurrency=1 tests/unit.test.js tests/api.test.js tests/llm-agent.test.js",
     "eval:forecast": "node scripts/evalForecast.js",
     "eval:agent": "node scripts/evalAgent.js",
     "export": "node scripts/export.js",
